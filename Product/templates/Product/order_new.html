@@ -1,0 +1,19 @@
+{%extends "Product/layout.html" %}
+
+{% block content %}
+
+<script language="javascript">
+  $(document).ready(function () {
+    $( '#id_startDate' ).datepicker({ dateFormat: 'yy-mm-dd' }).val();
+	$( '#id_stopDate' ).datepicker({ dateFormat: 'yy-mm-dd' }).val();
+  });
+  </script>
+
+<form action="order_new" method="post">
+  {% csrf_token %}
+  {{ form }}
+  <br>
+  <input type="submit" value="Dodaj" id="datepicker"/>
+</form>
+
+{% endblock content %}

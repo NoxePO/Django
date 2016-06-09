@@ -1,0 +1,37 @@
+{% extends "Product/layout.html" %}
+
+{% block content %}
+
+Imię: {{ worker.name }} <br>
+Nazwisko: {{ worker.forename }} <br>
+ID zamówienia: {{ worker.orderid }} <br>
+
+</br><br><br>
+Edycja Pracownika:</br>
+<form action="{% url 'worker_edit' worker.id %}" method="post">
+	{% csrf_token %}
+	<table>
+	<tr>
+	<td><label for="name">Imię pracownika:</label></td>
+	<td><input id="name" name="name" type="text" value="{{ worker.name }}"></input></td>
+	</tr>
+	<tr>
+	<td><label for="forename">Nazwisko pracownika:</label></td>
+	<td><input id="forename" name="forename" type="text" value="{{ worker.forename }}"></input></td>
+	</tr>
+	<tr>
+	<td><label for="Zamówienie">Zamówienie: </label></td>
+	<td>
+	<select id="orderid" name="orderid" value="{{ order.item_id }}">
+    {% for order in allOrders %}
+	<option value="{{order.id}}"{% if order.id == worker.orderid_id %} selected {% endif %}>{{order.orderName}}</option>
+	{% endfor %}
+	</select>
+	</td>
+	</table>
+	
+	
+	<input class="btn btn-success" type="submit" value="Zapisz"></input>
+</form>
+
+{% endblock content %}

@@ -1,0 +1,32 @@
+{% extends "Product/layout.html" %}
+
+{% block content %}
+
+[{{ order.orderName }}] {{ order.startDate }} {{ order.stopDate }} {{ order.item }} 
+
+</br>
+Edycja produktu:</br>
+<form action="{% url 'order_edit' order.id %}" method="post">
+	{% csrf_token %}
+	<table>
+	<tr>
+	<td><label for="orderName">Nazwa zamowienia:</label></td>
+	<td><input id="orderName" name="orderName" type="text" value="{{ order.orderName }}"></input></td>
+	</tr>
+	<tr>
+	<td><label for="startDate">Poczatek zamowienia:</label></td>
+	<td><input id="startDate" name="startDate" type="datetime" value="{{ order.startDate }}"></input></td>
+	</tr>
+	<tr>
+	<td><label for="stopDate">Koniec zamowienia:</label></td>
+	<td><input id="stopDate" name="stopDate" type="datetime" value="{{ order.stopDate }}"></input></td>
+	</tr>
+	<tr>
+	<td><label for="item">Produkt:</label></td>
+	<td><input id="item" name="item" type="text" value="{{ order.item }}"></input></td>
+	</tr>
+	</table>
+	<input class="btn btn-success" type="submit" value="Zapisz"></input>
+</form>
+
+{% endblock content %}

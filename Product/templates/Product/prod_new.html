@@ -1,0 +1,31 @@
+{%extends "Product/layout.html" %}
+
+{% block content %}
+
+<script>
+  $(function() {
+    var tags = [
+      "Kierownica",
+      "Łożysko",
+      "Deska rozdzielcza",
+      "Koło",
+      "Skrzynia biegów",
+      "Śruba 0.5mm",
+      "Śruba 0.6mm",
+      "Przewód",
+      "Kabel 5m"
+    ];
+    $( "#id_name" ).autocomplete({
+      source: tags
+    });
+  });
+  </script>
+  
+<form action="prod_new" method="post">
+  {% csrf_token %}
+  {{ form }}
+  <br>
+  <input type="submit" value="Dodaj" />
+</form>
+
+{% endblock content %}

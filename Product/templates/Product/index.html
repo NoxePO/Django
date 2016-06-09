@@ -1,0 +1,64 @@
+{%extends "Product/layout.html" %}
+
+{% block content %}
+
+	
+
+<table border = "0" width = "100%">
+  <tr>
+    <th colspan="2">Produkty</th>
+  </tr>
+    {% for product in allProducts %}
+	<tr>
+	<td><a href="{% url 'prod_edit' product.id %}">{{ product }}</a></td>
+	<td   align="right"><a class="btn btn-danger" href="{% url 'prod_del' product.id %}">Usuń</a></td>
+	</tr>
+	{% endfor %}
+  <tr>
+    <th colspan="2"><a class="btn btn-success" href="prod_new/" >Dodaj produkt</a></th>
+  </tr>
+</table>
+
+<br><br>
+
+<table border = "0" width = "100%">
+  <tr>
+    <th colspan="2">Zamówienia</th>
+  </tr>
+    {% for order in allOrders %}
+	<tr>
+	<td><a href="{% url 'order_edit' order.id %}">{{ order }}</a></td>
+	<td>Rozpoczęcie zamówiania: <a href="{% url 'order_edit' order.id %}">{{ order.startDate }}</a></td>
+	<td>Zakończenie zamówienia: <a href="{% url 'order_edit' order.id %}">{{ order.stopDate }}</a></td>
+	<td   align="right"><a class="btn btn-danger" href="{% url 'order_del' order.id %}">Usuń</a></td>
+	</tr>
+	{% endfor %}
+  <tr>
+    <th colspan="2"><a class="btn btn-success" href="order_new/">Dodaj zamowienie</a></th>
+  </tr>
+</table>
+
+<br><br>
+
+<table border = "0" width = "100%">
+  <tr>
+    <th colspan="2">Pracownicy</th>
+  </tr>
+    {% for worker in allWorkers %}
+	<tr>
+	
+	<td><a href="{% url 'worker_edit' worker.id %}">{{ worker.name }} {{ worker.forename }}</a></td>
+	<td>Aktywne zlecenie: <a href="{% url 'worker_edit' worker.id %}">{{ worker.orderid }}</a></td>
+	<td align="right"><a class="btn btn-danger" href="{% url 'worker_del' worker.id %}">Usuń</a></td>
+	
+	</tr>
+	{% endfor %}
+  <tr>
+    <th colspan="2"><a class="btn btn-success" href="worker_new/">Dodaj pracownika</a></th>
+  </tr>
+</table>
+
+{% endblock content %}
+
+
+

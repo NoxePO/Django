@@ -1,0 +1,28 @@
+
+<html>
+
+<head>
+	<title>Logowanie</title>
+</head>
+
+<body>
+
+{% if form.errors %}
+	<b>Nie można zalogować</b>
+{% endif %}
+
+<form method = "POST" action = "{% url 'django.contrib.auth.views.login' %}">
+{% csrf_token %}
+
+{{form.username.label_tag}}
+{{form.username}}
+<br>
+{{ form.password.label_tag }}
+{{ form.password }}
+
+<input type = "submit" value = "Zaloguj" />
+<input type = "hidden" name = "next" value = {{next}} />
+
+</form>
+</body>
+</html>
